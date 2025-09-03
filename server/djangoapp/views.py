@@ -13,8 +13,8 @@ from django.contrib.auth import login, authenticate
 import logging
 import json
 from django.views.decorators.csrf import csrf_exempt
-from .populate import initiate
 
+from .populate import initiate
 from .models import CarMake, CarModel
 
 
@@ -84,15 +84,25 @@ def registration(request):
 
 
 def get_cars(request):
-    count = CarMake.objects.filter().count()
-    print(count)
-    if(count == 0):
-        initiate()
-    car_models = CarModel.objects.select_related('car_make')
+    # Check if CarModel table is empty
+    if CarModel.objects.count() == 0:
+        initiate()  # Populate data if empty
+
+    # Retrieve all car models
+    car_models = CarModel.objects.select_related('car_make').all()
+
+    # Prepare list of car models with related car make names
     cars = []
     for car_model in car_models:
-        cars.append({"CarModel": car_model.name, "CarMake": car_model.car_make.name})
-    return JsonResponse({"CarModels":cars})
+        cars.append({
+            "CarModel": car_model.name,
+            "CarMake": car_model.car_make.name,
+            "Type": car_model.type,
+            "Year": car_model.year,
+            "DealerId": car_model.dealer_id,
+        })
+
+    return JsonResponse({"CarModels": cars})
 
 # # Update the `get_dealerships` view to render the index page with
 # a list of dealerships
