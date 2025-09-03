@@ -9,7 +9,7 @@ class CarMakeAdmin(admin.ModelAdmin):
     inlines = [CarModelInline]
 
 class CarModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'car_make', 'dealer_id', 'year')
+    list_display = ('name', 'car_make', 'type', 'year')
 
 admin.site.register(CarMake, CarMakeAdmin)
 admin.site.register(CarModel, CarModelAdmin)
