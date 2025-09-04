@@ -44,17 +44,17 @@ class Migration(migrations.Migration):
                 ("name", models.CharField(max_length=100)),
                 ('type',
                  models.CharField(
-                     choices=[
-                         ("HATCHBACK", "Hatchback"),
-                         ("SEDAN", "Sedan"),
-                         ("SUV", "SUV"),
-                         ("WAGON", "Wagon"),
-                         ("PICKUP", "Pickup"),
-                         ("OFF-ROADER", "Off-Roader"),
-                         ("VAN", "Van"),
-                         ],
-                     default='SUV',
-                     max_length=10
+                    choices=[
+                        ("HATCHBACK", "Hatchback"),
+                        ("SEDAN", "Sedan"),
+                        ("SUV", "SUV"),
+                        ("WAGON", "Wagon"),
+                        ("PICKUP", "Pickup"),
+                        ("OFF-ROADER", "Off-Roader"),
+                        ("VAN", "Van"),
+                    ],
+                    default='SUV',
+                    max_length=10,
                  )),
                 (
                     "year",
