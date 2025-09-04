@@ -28,19 +28,28 @@ class Migration(migrations.Migration):
             name='CarModel',
             fields=[
                 ('id',
-                 models.BigAutoField(auto_created=True, primary_key=True,
-                                     serialize=False, verbose_name='ID')),
+                 models.BigAutoField(
+                     auto_created=True,
+                     primary_key=True,
+                     serialize=False,
+                     verbose_name='ID'
+                 )),
                 ('dealer_id', models.IntegerField()),
                 ('name', models.CharField(max_length=100)),
                 ('type',
-                 models.CharField(choices=[('HATCHBACK', 'Hatchback'),
-                                           ('SEDAN', 'Sedan'),
-                                           ('SUV', 'SUV'),
-                                           ('WAGON', 'Wagon'),
-                                           ('PICKUP', 'Pickup'),
-                                           ('OFF-ROADER', 'Off-Roader'),
-                                           ('VAN', 'Van')],
-                                  default='SUV', max_length=10)),
+                 models.CharField(
+                     choices=[
+                         ('HATCHBACK', 'Hatchback'),
+                         ('SEDAN', 'Sedan'),
+                         ('SUV', 'SUV'),
+                         ('WAGON', 'Wagon'),
+                         ('PICKUP', 'Pickup'),
+                         ('OFF-ROADER', 'Off-Roader'),
+                         ('VAN', 'Van'),
+                     ],
+                     default='SUV',
+                     max_length=10
+                 )),
                 ('year',
                  models.IntegerField(
                      default=2023,
@@ -52,7 +61,7 @@ class Migration(migrations.Migration):
                 ('car_make',
                  models.ForeignKey(
                      on_delete=django.db.models.deletion.CASCADE,
-                                   to='djangoapp.carmake'
+                     to='djangoapp.carmake'
                  )),
             ],
         ),
