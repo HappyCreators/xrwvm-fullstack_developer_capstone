@@ -1,6 +1,6 @@
 # Uncomment the required imports before adding the code
 
-from django.shortcuts import render
+# from django.shortcuts import render
 # from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 # from django.shortcuts import get_object_or_404, render, redirect
@@ -75,14 +75,14 @@ def registration(request):
     if email_exist:
         data = {"email": email, "error": "Email already registered"}
         return JsonResponse(data)
-    
+
     # If it is a new user
     if not username_exist:
         # Create user in auth_user table
-        user = User.objects.create_user(username=username, 
-                                        first_name=first_name, 
-                                        last_name=last_name, 
-                                        password=password, 
+        user = User.objects.create_user(username=username,
+                                        first_name=first_name,
+                                        last_name=last_name,
+                                        password=password,
                                         email=email)
         # Login the user and redirect to list page
         login(request, user)
@@ -158,13 +158,13 @@ def add_review(request):
             data = json.loads(request.body)
             response = post_review(data)
             print(response)  # Optional: print response for debugging
-            return JsonResponse({"status": 200, 
+            return JsonResponse({"status": 200,
                                  "message": "Review posted successfully"})
         except json.JSONDecodeError:
-            return JsonResponse({"status": 400, 
+            return JsonResponse({"status": 400,
                                  "message": "Invalid JSON data"})
         except Exception as e:
-            return JsonResponse({"status": 500, 
+            return JsonResponse({"status": 500,
                                  "message": f"Error posting review: {str(e)}"})
     else:
         return JsonResponse({"status": 405, "message": "Method not allowed"})
