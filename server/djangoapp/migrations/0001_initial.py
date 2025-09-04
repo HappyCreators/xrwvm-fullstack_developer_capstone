@@ -52,7 +52,7 @@ class Migration(migrations.Migration):
                          ("PICKUP", "Pickup"),
                          ("OFF-ROADER", "Off-Roader"),
                          ("VAN", "Van"),
-                     ],
+                         ],
                      default='SUV',
                      max_length=10
                  )),
